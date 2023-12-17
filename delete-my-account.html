@@ -23,6 +23,7 @@
             border-radius: 6px;
             margin: 10px;
             display: inline-block;
+            font-size: 15px;
         }
         .button:hover {
             background-color: #fbeaea;
@@ -38,9 +39,28 @@
 </head>
 <body>
     <center>
-        <p>Your account will be permanently deleted. If you are sure, press the "Delete my account" button.</p>
-        <input type="mail" placeholder="Your email adress">
-        <a class="button" href="mailto:pluckydev@gmail.com?subject=Delete%20my%20account&body=I%20want%20to%20delete%20my%20account%20permanently.">Delete my account</a>
+        <form id="deleteAccountForm" onsubmit="submitForm(event)">
+            <p>Your account will be permanently deleted. If you are sure, press the "Delete my account" button.</p>
+            <input id="email" type="mail" placeholder="Your email adress">
+            <button class="button" type="submit">Delete my account</button>
+        </form>
     </center>
+
+    <script>
+        function submitForm(event) {
+          event.preventDefault(); // Form submitini engelle
+        
+          // Email adresini al
+          const email = document.getElementById('email').value;
+        
+          // Mailto linkini oluştur
+          const subject = 'Delete My Account';
+          const body = `I want to permanently delete my account associated with this email address: ${email}.`;
+          const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+        
+          // Mailto linkini aç
+          window.location.href = mailtoLink;
+        }
+        </script>
 </body>
 </html>
